@@ -10,8 +10,17 @@ import {
 import Home from './Home'
 import Procedures from './Procerdures'
 import Contact from './Contact' 
+import WidgetShow from './WidgetShow'
 
 function App() {
+  const procedures = [
+    "Deep Cleaning",
+    "Root Canal",
+    "Wisdom Teeth Removal",
+    "Grills",
+    "Implants",
+    "Fillings"
+  ]
   return (
     <Router>
     <div className="App">
@@ -21,8 +30,9 @@ function App() {
         <Link to="/contact">Contact Us!</Link>{' '}
       </nav>
         <Route exact path="/" component={Home}/>
-        <Route path="/procedures" component={Procedures}/>
+        <Route path="/procedures" render={() => <Procedures procedures={procedures}/>}/>
         <Route path="/contact" component={Contact}/>
+        <Route path="/widgets/:id" render={(props) => <WidgetShow procedures={procedures} {...props}/>} />
     </div>  
     </Router>
   );
